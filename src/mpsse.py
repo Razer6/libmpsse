@@ -61,7 +61,7 @@ class MPSSE:
 		if mode is not None:
 			self.context = _mpsse.MPSSE(mode, frequency, endianess)
 			if self.context.open == 0:
-				raise Exception, self.ErrorString()
+				raise Exception(self.ErrorString())
 
 	def Open(self, vid, pid, mode, frequency, endianess=MSB, interface=IFACE_A, description=None, serial=None):
 		"""
@@ -70,7 +70,7 @@ class MPSSE:
 		"""
 		self.context = _mpsse.Open(vid, pid, mode, frequency, endianess, interface, description, serial)
 		if self.context.open == 0:
-			raise Exception, self.ErrorString()
+			raise Exception(self.ErrorString()
 		return MPSSE_OK
 
 	def Close(self):
@@ -93,7 +93,7 @@ class MPSSE:
 		Called internally by __init__ and Open.
 		"""
 		if _mpsse.SetMode(self.context, mode, endianess) == MPSSE_FAIL:
-			raise Exception, self.ErrorString()
+			raise Exception(self.ErrorString())
 		return MPSSE_OK
 
 	def SetClock(self, frequency):
@@ -102,7 +102,7 @@ class MPSSE:
 		Called internally by __init__ and Open.
 		"""
 		if _mpsse.SetClock(self.context, frequency) == MPSSE_FAIL:
-			raise Exception, self.ErrorString()
+			raise Exception(self.ErrorString())
 		return MPSSE_OK
 
 	def GetClock(self):
@@ -136,7 +136,7 @@ class MPSSE:
 		Set enable = 1 to enable, enable = 0 to disable.
 		"""
 		if _mpsse.SetLoopback(self.context, enable) == MPSSE_FAIL:
-			raise Exception, self.ErrorString()
+			raise Exception(self.ErrorString())
 		return MPSSE_OK
 
 	def SetCSIdle(self, idle):
@@ -152,7 +152,7 @@ class MPSSE:
 		Send data start condition.
 		"""
 		if _mpsse.Start(self.context) == MPSSE_FAIL:
-			raise Exception, self.ErrorString()
+			raise Exception,(self.ErrorString())
 		return MPSSE_OK
 
 	def Stop(self):
@@ -160,7 +160,7 @@ class MPSSE:
 		Send data stop condition.
 		"""
 		if _mpsse.Stop(self.context) == MPSSE_FAIL:
-			raise Exception, self.ErrorString()
+			raise Exception(self.ErrorString)()
 		return MPSSE_OK
 
 	def Write(self, data):
@@ -168,7 +168,7 @@ class MPSSE:
 		Send data (string) out via the selected serial protocol.
 		"""
 		if _mpsse.Write(self.context, data) == MPSSE_FAIL:
-			raise Exception, self.ErrorString()
+			raise Exception(self.ErrorString())
 		return MPSSE_OK
 
 	def Read(self, size):
@@ -215,7 +215,7 @@ class MPSSE:
 		The pin can be GPIO pin 0 - 11.
 		"""
 		if _mpsse.PinHigh(self.context, pin) == MPSSE_FAIL:
-			raise Exception, self.ErrorString()
+			raise Exception(self.ErrorString())
 		return MPSSE_OK
 
 	def PinLow(self, pin):
@@ -224,7 +224,7 @@ class MPSSE:
 		The Pin can be GPIO pin 0 - 11.
 		"""
 		if _mpsse.PinLow(self.context, pin) == MPSSE_FAIL:
-			raise Exception, self.ErrorString()
+			raise Exception(self.ErrorString())
 		return MPSSE_OK
 
 	def ReadPins(self):
